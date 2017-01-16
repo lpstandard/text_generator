@@ -21513,6 +21513,14 @@
 
 	var _Output2 = _interopRequireDefault(_Output);
 
+	var _Text = __webpack_require__(207);
+
+	var _Text2 = _interopRequireDefault(_Text);
+
+	var _Select = __webpack_require__(205);
+
+	var _Select2 = _interopRequireDefault(_Select);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21549,24 +21557,63 @@
 
 	      _axios2.default.get('http://hipsterjesus.com/api?paras=' + this.state.paras + '&html=' + this.state.html).then(function (response) {
 	        _this2.setState({ text: response.data.text }, function () {
-	          console.log(this.state);
+	          // console.log(this.state)
 	        });
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
 	    }
 	  }, {
+	    key: "changeParas",
+	    value: function changeParas(number) {
+	      this.setState({ paras: number }, this.getText);
+	    }
+	  }, {
+	    key: "showHtml",
+	    value: function showHtml(x) {
+	      this.setState({ html: x }, this.getText);
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        null,
+	        { className: "container" },
 	        _react2.default.createElement(
 	          "h1",
 	          null,
-	          "Dummy Text Generator"
+	          "DummyText Generator"
 	        ),
-	        _react2.default.createElement(_Output2.default, { value: this.state.text })
+	        _react2.default.createElement(_Output2.default, { value: this.state.text }),
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Real Time Options"
+	        ),
+	        _react2.default.createElement(
+	          "form",
+	          null,
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            _react2.default.createElement(
+	              "label",
+	              null,
+	              "Paragraphs: "
+	            ),
+	            _react2.default.createElement(_Text2.default, { value: this.state.paras, onChange: this.changeParas.bind(this) })
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            _react2.default.createElement(
+	              "label",
+	              null,
+	              "Include HTML: "
+	            ),
+	            _react2.default.createElement(_Select2.default, { value: this.state.html, onChange: this.showHtml.bind(this) })
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -23118,6 +23165,142 @@
 	}(_react.Component);
 
 	exports.default = Output;
+
+/***/ },
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Select = function (_Component) {
+	  _inherits(Select, _Component);
+
+	  function Select(props) {
+	    _classCallCheck(this, Select);
+
+	    var _this = _possibleConstructorReturn(this, (Select.__proto__ || Object.getPrototypeOf(Select)).call(this, props));
+
+	    _this.state = {
+	      value: props.value
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Select, [{
+	    key: "onChange",
+	    value: function onChange(e) {
+	      this.setState({ valu: e.target.value }, function () {
+	        this.props.onChange(this.state.value);
+	      });
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "select",
+	          { onChange: this.onChange.bind(this) },
+	          _react2.default.createElement(
+	            "option",
+	            { value: "false" },
+	            "Yes"
+	          ),
+	          _react2.default.createElement(
+	            "option",
+	            { value: "true" },
+	            "No"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Select;
+	}(_react.Component);
+
+	exports.default = Select;
+
+/***/ },
+/* 206 */,
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Text = function (_Component) {
+	  _inherits(Text, _Component);
+
+	  function Text(props) {
+	    _classCallCheck(this, Text);
+
+	    var _this = _possibleConstructorReturn(this, (Text.__proto__ || Object.getPrototypeOf(Text)).call(this, props));
+
+	    _this.state = {
+	      value: props.value
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Text, [{
+	    key: "onChange",
+	    value: function onChange(e) {
+	      this.setState({ value: e.target.value }, function () {
+	        this.props.onChange(this.state.value);
+	      });
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement("input", { type: "number", value: this.state.value, onChange: this.onChange.bind(this) })
+	      );
+	    }
+	  }]);
+
+	  return Text;
+	}(_react.Component);
+
+	exports.default = Text;
 
 /***/ }
 /******/ ]);
